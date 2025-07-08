@@ -28,8 +28,8 @@ fn run_tcp_server() -> Unit raise @socket.NetError {
 fn handle_client(client : @socket.Socket) -> Unit {
   // Here you can read from and write to the client socket
   // For example, you can read data from the client and echo it back
-  let buf = FixedArray::make(1024, Byte::default())
   while true {
+    let buf = FixedArray::make(1024, Byte::default())
     let bytes_read = match (try? client.recv(buf)) {
       Ok(n) => n
       Err(err) => {
