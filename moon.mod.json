@@ -1,0 +1,15 @@
+{
+  "name": "fangyinc/socket",
+  "version": "0.1.0",
+  "deps": {
+    "moonbitlang/x": "0.4.29"
+  },
+  "readme": "README.md",
+  "repository": "https://github.com/fangyinc/socket.mbt",
+  "license": "Apache-2.0",
+  "keywords": [
+    "socket"
+  ],
+  "description": "A socket binding for MoonBit",
+  "source": "src"
+}

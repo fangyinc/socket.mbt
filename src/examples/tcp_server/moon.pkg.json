@@ -1,0 +1,10 @@
+{
+  "is-main": true,
+  "import": [
+    "fangyinc/socket/lib",
+    {
+        "path": "fangyinc/socket/lib",
+        "alias": "socket"
+    }
+  ]
+}

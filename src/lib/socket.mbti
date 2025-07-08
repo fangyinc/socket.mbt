@@ -1,0 +1,25 @@
+
+package "fangyinc/socket/lib"
+
+fn new(domain: Domain, ty: Type, protocol: Protocol) -> Socket raise NetError
+
+// Types and methods
+pub(all) struct Socket {
+    inner : RawFd,
+}
+
+fn Socket::bind(Self, addr : SocketAddr) -> Unit raise NetError
+fn Socket::listen(Self, backlog~ : Int = 5) -> Unit raise NetError
+fn Socket::accept(Self) -> Socket raise NetError
+fn Socket::connect(Self, addr : SocketAddr) -> Unit raise NetError
+fn Socket::send(Self, data : FixedArray[Byte], flags~ : Int = 0) -> Int raise NetError
+fn Socket::recv(Self, buffer : FixedArray[Byte], flags~ : Int = 0) -> Int raise NetError
+fn Socket::close(Self) -> Unit raise NetError
+fn Socket::shutdown(Self, how : Shutdown) -> Unit raise NetError
+fn Socket::set_broadcast(Self, enable : Bool) -> Unit raise NetError
+fn Socket::set_keepalive(Self, enable : Bool) -> Unit raise NetError
+fn Socket::set_recv_buffer_size(Self, size : Int) -> Unit raise NetError
+fn Socket::set_send_buffer_size(Self, size : Int) -> Unit raise NetError
+type RawFd
+
+// Traits

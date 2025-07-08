@@ -1,0 +1,12 @@
+
+{
+    "import": [
+        "moonbitlang/x/encoding"
+    ],
+    "targets": {
+        "socket_native.mbt": ["native", "llvm"]
+    },
+    "native-stub": [
+        "moonbit_socket.c"
+    ]
+}
