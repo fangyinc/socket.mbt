@@ -4,7 +4,8 @@
         "moonbitlang/x/encoding"
     ],
     "targets": {
-        "socket_native.mbt": ["native", "llvm"]
+        "socket_native.mbt": ["native", "llvm"],
+        "socket_js.mbt": ["js"]
     },
     "native-stub": [
         "moonbit_socket.c"

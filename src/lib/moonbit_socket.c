@@ -75,7 +75,7 @@ static int map_protocol(int moonbit_proto) {
         case MOONBIT_PROTO_UDP: return IPPROTO_UDP;
         case MOONBIT_PROTO_ICMPV4: return IPPROTO_ICMP;
         case MOONBIT_PROTO_ICMPV6: return IPPROTO_ICMPV6;
-        default: return IPPROTO_TCP;
+        default: return IPPROTO_IP; // For automatic protocol selection
     }
 }
 
@@ -208,12 +208,14 @@ MOONBIT_FFI_EXPORT int moonbit_socket_bind_ipv4(RAW_FD sockfd, moonbit_bytes_t i
     sa.sin_family = AF_INET;
     sa.sin_port = htons(port);
     
-    if (ip && strlen((const char*)ip) > 0) {
-        if (inet_aton((const char*)ip, &sa.sin_addr) != 1) {
-            return -1;
+    // IP address handling
+    if (ip != NULL && strlen((const char*)ip) > 0) {
+        // support both dot-decimal and hexadecimal formats
+        if (inet_pton(AF_INET, (const char*)ip, &sa.sin_addr) != 1) {
+            return -1; // Invalid IP address format
         }
     } else {
-        sa.sin_addr.s_addr = INADDR_ANY;
+        sa.sin_addr.s_addr = htonl(INADDR_ANY);
     }
     
     int res = bind(s, (struct sockaddr*)&sa, sizeof(sa));
